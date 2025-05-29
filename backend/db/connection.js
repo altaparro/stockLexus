@@ -1,19 +1,9 @@
-// db/connection.js
-import mysql from 'mysql2';
+import { Sequelize } from 'sequelize';
 
-const conexion = mysql.createConnection({
+const sequelize = new Sequelize('stockLexus', 'root', '', {
   host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'stockLexus',
+  dialect: 'mysql',
+  logging: false, // lo sacamos para que no escupa SQL en consola
 });
 
-conexion.connect(err => {
-  if (err) {
-    console.error('❌ Error de conexión: ', err);
-    return;
-  }
-  console.log('✅ Conectado a MySQL');
-});
-
-export default conexion;
+export default sequelize;
